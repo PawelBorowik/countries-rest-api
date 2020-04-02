@@ -14,10 +14,8 @@ function App() {
     
       try{
          const response =await fetch(API)
-         
          const responseParsed= await response.json()
-       
-        setLoading(false)
+         setLoading(false)
          setCountries(responseParsed)
          }catch(error){
           setLoading(false)
@@ -28,19 +26,13 @@ function App() {
 
   },  [selectItem])
 
-
-
-
   const handleChangeSelect = e => setSelectItem(e.target.value);
   
-
   const showCountries = countries.map(country => (
     <option key={country.name} value={country.name}>
       {country.name}
     </option>
   ));
-
-
 
   const selectedCountry = countries.filter(
     country => country.name === selectItem
@@ -64,12 +56,9 @@ if(error){
 
   return (
     <div className="App">
-
-      
       <header className="App-header">
-      <div className="hhh">{loading ? <p>loading...</p>: select}</div>
+        <div className="hhh">{loading ? <p>loading...</p>: select}</div>
         <div className="flag"> {flag}</div>
-        
       </header>
     </div>
   );
