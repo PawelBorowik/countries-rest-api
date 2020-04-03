@@ -75,7 +75,7 @@ const API = "https://restcountries.eu/rest/v2/";
       <p className="App_country ">{selectCountry.name}</p>
       <p className="App_country nativeName">({selectCountry.nativeName})</p>
       <p className="App_country capital">Capital city: {selectCountry.capital}</p>
-      <p className="App_country capital">Language: {selectCountry.languages.map( (lang, index)=><span key={lang.iso639_1}> {(index? "," :"")+ lang.name}</span>)}</p>
+      <p className="App_country capital">Language: {selectCountry.languages.map( (lang, index)=><span key={lang.iso639_1}>{(index? ", " :"")+ lang.name}</span>)}</p>
     </div>
   ));
 const select= <select onChange={handleChangeSelect} >
