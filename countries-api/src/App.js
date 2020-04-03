@@ -61,7 +61,7 @@ const API = "https://restcountries.eu/rest/v2/";
   const handleChangeSelect = e => setSelectCountry(e.target.value);
   
   const showCountries = state.countries.map(country => (
-    <option key={country.name} value={country.name}>
+    <option className="App_select-option" key={country.name} value={country.name}>
       {country.name}
     </option>
   ));
@@ -70,11 +70,12 @@ const API = "https://restcountries.eu/rest/v2/";
     country => country.name === selectCountry
   );
   const showSelectedCountry = selectedCountry.map(selectCountry => (
-    <div key={selectCountry.name}>
-     <img src={selectCountry.flag} alt={selectCountry.alpha3Code}></img>
-      <p>{selectCountry.name}</p>
-      <p>({selectCountry.nativeName})</p>
-      <p>Capital city: {selectCountry.capital}</p>
+    <div className="App_country-conteiner"key={selectCountry.name}>
+     <img className="App_country flag" src={selectCountry.flag} alt={selectCountry.alpha3Code}></img>
+      <p className="App_country ">{selectCountry.name}</p>
+      <p className="App_country nativeName">({selectCountry.nativeName})</p>
+      <p className="App_country capital">Capital city: {selectCountry.capital}</p>
+      <p className="App_country capital">Language: {selectCountry.languages.map( (lang, index)=><span key={lang.iso639_1}> {(index? "," :"")+ lang.name}</span>)}</p>
     </div>
   ));
 const select= <select onChange={handleChangeSelect} >
@@ -87,10 +88,11 @@ if(state.error){
 }
   return (
     <div className="App">
-      <header className="App-header">
-        <div className="hhh">{state.loading ? <p>loading...</p>: select}</div>
-        <div className="flag"> {showSelectedCountry}</div>
-      </header>
+       <header className="App_sellect">{state.loading ? <p>loading...</p>: select}</header>
+      <main className="App-main">
+       
+        <div className="App_content"> {showSelectedCountry}</div>
+      </main>
     </div>
   );
 }
