@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useReducer } from "react";
 import "./App.css";
+import { useGoogleMaps } from "react-hook-google-maps";
 
 function dataUseReducer(state, action){
   switch(action.type){
@@ -60,6 +61,7 @@ const API = "https://restcountries.eu/rest/v2/";
 
   const handleChangeSelect = e => setSelectCountry(e.target.value);
   
+  
   const showCountries = state.countries.map(country => (
     <option className="App_select-option" key={country.name} value={country.name}>
       {country.name}
@@ -76,12 +78,25 @@ const API = "https://restcountries.eu/rest/v2/";
       <p className="App_country nativeName">({selectCountry.nativeName})</p>
       <p className="App_country capital">Capital city: {selectCountry.capital}</p>
       <p className="App_country capital">Language: {selectCountry.languages.map( (lang, index)=><span key={lang.iso639_1}>{(index? ", " :"")+ lang.name}</span>)}</p>
+      <div></div>
     </div>
   ));
 const select= <select onChange={handleChangeSelect} >
 <option value="">Select country:</option>
 {showCountries}
 </select>
+const { ref } = useGoogleMaps(
+  "AIzaSyAWvyVPXYtFUD-oLaqpeXn_gOx8zGzmY3I",
+  {
+    center: { lat: 10, lng: 0 },
+    zoom: 5,
+  },
+  
+);
+
+
+
+
   
 if(state.error){
   return <p>error</p>
@@ -92,9 +107,14 @@ if(state.error){
       <main className="App-main">
        
         <div className="App_content"> {showSelectedCountry}</div>
+        <div  ref={ref} style={{ width: "100%", height: 200 }} >    
+      </div>
       </main>
-    </div>
+     
+      
+     </div>
   );
 }
+
 
 export default App;
